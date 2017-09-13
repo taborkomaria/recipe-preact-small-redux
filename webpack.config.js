@@ -17,9 +17,9 @@ const config = {
 				use: [
 					{
 						loader: 'ts-loader',
-						options: {
+						/*options: {
 							configFileName: './tsconfig.json',
-						},
+						},*/
 					},
 				],
 			},
