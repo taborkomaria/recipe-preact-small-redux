@@ -5,7 +5,7 @@ import {User} from 'firebase/app';
 
 function addRecipe( title:string, ingredients: Ingredient[], description:string, 
 author: User | null, servings:string, imagePreviewUrl:any,
-descriptionPreview:string): void
+descriptionPreview:string, time:string): void
 {
 	
 	const recipesRef = getRecipesRef();
@@ -44,7 +44,8 @@ descriptionPreview:string): void
 				description,
 				servings,
 				imagePreviewUrl,
-				descriptionPreview
+				descriptionPreview,
+				time
 			} as Partial<StateRecipe>,
 		);
 }

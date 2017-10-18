@@ -50,6 +50,7 @@ class AddRecipe extends SubscribedComponent<State, AddRecipeProps, AddRecipeStat
 	 * Элемент поля ввода.
 	 */
 	private input: HTMLInputElement;
+	private inputTime: HTMLInputElement;
 	private inputDesc: HTMLTextAreaElement;
 	private form: HTMLFormElement;
 	private textarea: HTMLTextAreaElement;
@@ -69,13 +70,18 @@ class AddRecipe extends SubscribedComponent<State, AddRecipeProps, AddRecipeStat
 					<h2>Название:</h2>
 					<input
 						name="title"
-						placeholder="Title..."
+						placeholder="Название"
 						ref={this.refInput}
 					/>
-					<h2>Название:</h2>
+					<h2>Краткое описание:</h2>
 					<textarea
 						ref={this.refInputDesc}
 					>
+					<h2>Время приготовления</h2>
+					<input
+						placeholder="Время приготовления"
+						ref={this.refInputTime}
+					/>
 					</textarea>
 					<input
 					 	type="file"
@@ -130,6 +136,10 @@ class AddRecipe extends SubscribedComponent<State, AddRecipeProps, AddRecipeStat
 	{
 		this.input = element;
 	}
+	private refInputTime = ( element: HTMLInputElement ): void =>
+	{
+		this.inputTime = element;
+	}
 	private refInputDesc = ( element: HTMLTextAreaElement ): void =>
 	{
 		this.inputDesc = element;
@@ -180,7 +190,7 @@ class AddRecipe extends SubscribedComponent<State, AddRecipeProps, AddRecipeStat
 	//	(element as HTMLInputElement).value;
 		addRecipe( this.input.value, this.state.ingredients, 
 		this.textarea.value, this.state.user, this.select.value, 
-		this.imagePreviewUrl, this.inputDesc.value);
+		this.imagePreviewUrl, this.inputDesc.value, this.inputTime.value);
 		dispatch(setIngr([]));
 		this.input.value = '';
 		this.select.value = '';

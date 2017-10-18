@@ -49,58 +49,70 @@ class Recipe extends SubscribedComponent<State, RecipeProps, RecipeState>
 		
 		return (
 			<div class="recipe">
-				
-				<h2 class="recipe-title">{recipeShow.title}</h2>
-				<img src={recipeShow.imagePreviewUrl} />
-					<h2 class="recipe-user">Автор: {recipeShow.author.name}</h2>
-
-					<div class="serv">
-				<h2>Кол-во порций:</h2>
-				
-				<select 
-				ref={this.refSelect} 
-				//()=>
-				onChange={ (event:Event) => this.recipeRecalculate(this.select.options[this.select.selectedIndex].value,event, recipeShow) }
-				>
-					<option selected disabled hidden>{recipeShow.servings}</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="4">4</option>
-					<option value="8">8</option>
-					<option value="16">16</option>
-				</select>
+				<div class="recipe-img">
+					<img src={recipeShow.imagePreviewUrl} />
 				</div>
+				<div class="title-block">
+					<h2 class="recipe-title">{recipeShow.title}</h2>
+
+					<div class="info">
+						<p>{recipeShow.time}</p><p>{recipeShow.servings} шт</p>
+					</div>
+					<div class="auth-button">
+					{
+						user &&
+						recipeShow.author.uid === user.uid
+							? (
+								<div>
+									<button class="edit-button"
+									//()=>
+									onClick={ (event:Event) => this.recipeEdit(event) }
+									>
+										Редактировать
+									</button>
+									<button class="delete-recipe"
+									onClick={ (event:Event) => this.recipeDelete(event) }
+									>
+										Удалить
+									</button>
+								</div>
+							)
+
+							: (
+								<div></div>
+							)
+					}
+					</div>
 					
-					
-					
+					<h2 class="recipe-user">Автор: {recipeShow.author.name}</h2>
+				</div>
+				
+				<div class="serv">
+					<h2>Кол-во порций:</h2>
+				
+					<select 
+						ref={this.refSelect} 
+						//()=>
+						onChange={ (event:Event) => this.recipeRecalculate(this.select.options[this.select.selectedIndex].value,event, recipeShow) }
+						>
+						<option selected disabled hidden>{recipeShow.servings}</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="4">4</option>
+						<option value="8">8</option>
+						<option value="16">16</option>
+					</select>
 					<h2>Ингредиенты:</h2>
 					{this.getIngList( recipeShow )}
+				</div>
+					
+				<div class="steps">	
+					
+					
 					<h2>Способ приготовления:</h2>
 					<p>{recipeShow.description}</p>
+				</div>
 				
-				{
-					user &&
-					recipeShow.author.uid === user.uid
-						? (
-							<div>
-								<button class="edit-button"
-								//()=>
-								onClick={ (event:Event) => this.recipeEdit(event) }
-								>
-									Редактировать
-								</button>
-								<button class="delete-recipe"
-								onClick={ (event:Event) => this.recipeDelete(event) }
-								>
-									Удалить
-								</button>
-							</div>
-						)
-
-						: (
-							<div></div>
-						)
-				}
 			</div>
 			
 		);
@@ -117,7 +129,7 @@ class Recipe extends SubscribedComponent<State, RecipeProps, RecipeState>
 		
 		event.preventDefault();
 		
-		dispatch( setVisibilityFilter( 'SHOW_FORM' ) );
+		dispatch( setVisibilityFilter( 'SHOW_RECIPES_LIST' ) );
 		
 		deleteRecipe( this.state.recipeShow.id );
 		dispatch(setIngr([]));

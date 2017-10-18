@@ -57,7 +57,7 @@ class RecipesList extends SubscribedComponent<State, RecipesListProps, RecipesLi
 		
 		return (
 			<div class="small-wrapper">
-				<button class="primary-button"
+				<button class="primary-button big-button"
 					onClick={ () => this.addRecipe(event) }
 				>
 				Добавить рецепт

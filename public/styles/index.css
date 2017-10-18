@@ -10,9 +10,22 @@ body {
 }
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
 }
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b {
+  font-weight: 400;
 }
 .recepies-list {
   width: 50%;
@@ -41,7 +54,7 @@ body {
       justify-content: space-between;
   -ms-flex-align: center;
       align-items: center;
-  padding: 0 15px;
+  padding: 20px 15px;
 }
 h2 {
   font-size: 20px;
@@ -50,7 +63,6 @@ h2 {
   display: block;
   width: 100%;
   padding: 15px;
-  background: #fafafa;
 }
 .amount {
   margin-top: 10px;
@@ -73,6 +85,10 @@ ul {
   margin: 0;
   padding-left: 0;
 }
+form textarea:last-of-type {
+  min-width: 300px;
+  min-height: 300px;
+}
 .ingredient-block {
   clear: both;
   width: 100%;
@@ -89,18 +105,15 @@ ul {
       align-content: space-between;
 }
 .ingredient-block input {
-  float: left;
+  display: block;
   width: 150px;
-  margin-right: 10px;
 }
 .ingredient-block .count {
   width: 90px;
-  margin-right: 10px;
 }
 .ingredient-block select {
+  display: block;
   width: 50px;
-  float: left;
-  margin-right: 10px;
 }
 .ingredient-block .delete-button {
   float: left;
@@ -109,7 +122,6 @@ ul {
   display: block;
   text-align: center;
   line-height: 20px;
-  margin-top: 13px;
 }
 .ingredient-button {
   margin-bottom: 30px;
@@ -212,10 +224,13 @@ html {
   padding: 0 15px;
   cursor: pointer;
 }
+.big-button {
+  padding: 0 40px;
+  height: 40px;
+}
 .auth {
   height: 50px;
   border-bottom: 1px solid gray;
-  margin-bottom: 30px;
   line-height: 50px;
   background: #fafafa;
   padding: 0 15px;
@@ -243,16 +258,38 @@ html {
   margin-left: 20px;
 }
 .recipe {
-  /*position: fixed;
-	display: block;
-	width:50%;
-	height:400px;
-	background: black;
-	color:white;
-	left:50%;
-	top:50%;*/
   width: 100%;
-  display: block;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  padding: 30px 0;
+  max-width: 1000px;
+  margin: auto;
+}
+.recipe-img {
+  width: 45%;
+  height: 500px;
+  overflow: hidden;
+  -ms-flex-flow: column;
+      flex-flow: column;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.recipe-img img {
+  max-width: 100%;
+}
+.steps {
+  margin-top: 30px;
+  width: 60%;
 }
 .input-base {
   display: block;
@@ -320,27 +357,50 @@ body form h2 {
   display: inline-block;
 }
 .recipe-title {
-  color: #feaa26;
+  width: 100%;
+  color: black;
   text-align: center;
   font-size: 30px;
   margin-bottom: 20px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+.auth-button {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row-reverse;
+      flex-flow: row-reverse;
+}
+.auth-button button {
+  margin-bottom: 0;
 }
 .recipe-user {
+  width: 100%;
   font-size: 16px;
   color: gray;
-  text-align: center;
+  text-align: right;
 }
 .serv {
-  display: inline-block;
+  /*display: inline-block;
+	margin: auto;
+	margin-top:30px;
+	margin-bottom:30px;
+	left: 50%;
+    position: relative;
+	transform: translateX(-50%);
+	select{
+		left: 50%;
+    	position: relative;
+		transform: translateX(-50%);
+	}*/
+  width: 40%;
   margin: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  left: 50%;
-  position: relative;
-  transform: translateX(-50%);
-}
-.serv select {
-  left: 50%;
-  position: relative;
-  transform: translateX(-50%);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: column wrap;
+      flex-flow: column wrap;
+  -ms-flex-align: start;
+      align-items: flex-start;
 }

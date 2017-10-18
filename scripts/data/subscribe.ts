@@ -97,12 +97,12 @@ function subscribeToRecipes(): void
 			
 			for ( const key of keys )
 			{
-				const {description, ingredients, title, author,servings,imagePreviewUrl, descriptionPreview} = value[key] as StateRecipe;
+				const {description, ingredients, title, author,servings,imagePreviewUrl, descriptionPreview,time} = value[key] as StateRecipe;
 				
 				recipes.push(
 					{
 						id: key,
-						description, ingredients, title, author, servings,imagePreviewUrl,descriptionPreview
+						description, ingredients, title, author, servings,imagePreviewUrl,descriptionPreview,time
 					},
 				);
 			}

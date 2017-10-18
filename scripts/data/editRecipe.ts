@@ -3,7 +3,8 @@ import getRecipeRef from './getRecipeRef';
 
 //import {User} from 'firebase/app';
 
-function editRecipe( id:string, title:string, ingredients: Ingredient[], description:string, servings:string): void
+function editRecipe( id:string, title:string, descriptionPreview:string, 
+	ingredients: Ingredient[], description:string, servings:string, time:string): void
 {
 	
 	const recipeRef = getRecipeRef(id);
@@ -19,9 +20,11 @@ function editRecipe( id:string, title:string, ingredients: Ingredient[], descrip
 		(
 			{
 				title,
+				descriptionPreview,
 				ingredients,
 				description,
-				servings
+				servings,
+				time
 			} as Partial<StateRecipe>,
 		);
 }

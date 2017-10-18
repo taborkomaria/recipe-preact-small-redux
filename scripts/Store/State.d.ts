@@ -69,6 +69,7 @@ interface StateRecipe
 	descriptionPreview:string;
 	servings: string;
 	imagePreviewUrl:any;
+	time:string;
 }
 /**
  * Фильтр видимости.

@@ -52,6 +52,8 @@ class EditRecipe extends SubscribedComponent<State, EditRecipeProps, EditRecipeS
 	 * Элемент поля ввода.
 	 */
 	private input: HTMLInputElement;
+	private inputTime: HTMLInputElement;
+	private inputDesc: HTMLTextAreaElement;
 	private form: HTMLFormElement;
 	private textarea: HTMLTextAreaElement;
 	private block: HTMLElement;
@@ -75,8 +77,17 @@ class EditRecipe extends SubscribedComponent<State, EditRecipeProps, EditRecipeS
 						value={recipe.title}
 						ref={this.refInput}
 					/>
-					<h2>Автор:</h2>
-					<p>{recipe.author.name}</p>
+					<h2>Краткое описание:</h2>
+					<textarea
+						value={recipe.descriptionPreview}
+						ref={this.refInputDesc}
+					>
+					</textarea>
+					<h2>Время приготовления</h2>
+					<input
+						placeholder="Время приготовления"
+						ref={this.refInputTime}
+					/>
 					<h2>Кол-во порций:</h2>
 					
 					<select
@@ -124,9 +135,17 @@ class EditRecipe extends SubscribedComponent<State, EditRecipeProps, EditRecipeS
 	/**
 	 * Сохраняет ссылку на элемент поля ввода.
 	 */
+	private refInputTime = ( element: HTMLInputElement ): void =>
+	{
+		this.inputTime = element;
+	}
 	private refInput = ( element: HTMLInputElement ): void =>
 	{
 		this.input = element;
+	}
+	private refInputDesc = ( element: HTMLTextAreaElement ): void =>
+	{
+		this.inputDesc = element;
 	}
 	private refSelect = ( element: HTMLSelectElement ): void =>
 	{
@@ -153,7 +172,10 @@ class EditRecipe extends SubscribedComponent<State, EditRecipeProps, EditRecipeS
 		if(this.input.value === '' || this.textarea.value === '' || this.select.value === ''){
 			return;
 		}
-		editRecipe( this.state.recipeShow.id, this.input.value, this.state.ingredients, this.textarea.value, this.select.value);
+		editRecipe( this.state.recipeShow.id, this.input.value, 
+			this.inputDesc.value, this.state.ingredients, 
+			this.textarea.value, this.select.value,
+		this.inputTime.value);
 		dispatch( setRecipe (
 			{
 				...this.state.recipeShow ,
@@ -170,7 +192,7 @@ class EditRecipe extends SubscribedComponent<State, EditRecipeProps, EditRecipeS
 			units:" ",
 		   }] ) );
 
-		console.log(this.state.ingredients);
+		//console.log(this.state.ingredients);
 	}
 }
 
